@@ -13,8 +13,7 @@ them together produces 1721 * 299 = 514579, so the correct answer is 514579.
 """
 
 
-def main(expenses_file):
-    target = 2020
+def main(expenses_file, target):
     matches = None
 
     with open(expenses_file) as f:
@@ -39,4 +38,4 @@ def main(expenses_file):
 
 
 if __name__ == "__main__":
-    main(expenses_file='expenses.txt')
+    main(expenses_file='expenses.txt', target=2020)
