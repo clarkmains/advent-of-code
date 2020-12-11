@@ -101,6 +101,9 @@ What is the encryption weakness in your XMAS-encrypted list of numbers?
 import itertools
 
 
+GROUP_LENGTH = 25
+
+
 def read_input_file(filename):
     with open(filename) as file:
         numbers = [int(line) for line in file]
@@ -112,19 +115,19 @@ def valid_number(number, group):
 
 
 def find_invalid_number(numbers):
-    for i, n in enumerate(numbers[25:]):
-        if not valid_number(n, numbers[i:i+25]):
-            return n
+    for i, number in enumerate(numbers[GROUP_LENGTH:]):
+        if not valid_number(number, numbers[i:i + GROUP_LENGTH]):
+            return number
 
 
 def find_contiguous_numbers(invalid_number, numbers):
     for start in range(len(numbers)):
 
         for end in range(start, len(numbers)):
-            run = numbers[start:end]
+            group = numbers[start:end]
 
-            if len(run) > 1 and sum(run) == invalid_number:
-                return min(run) + max(run)
+            if len(group) > 1 and sum(group) == invalid_number:
+                return min(group) + max(group)
 
 
 if __name__ == "__main__":
